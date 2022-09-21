@@ -9,14 +9,15 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     public function index()
-    {
-        
-        // $products  = DB::table('products')->get(); //Query Builder
+    {   // $products  = DB::table('products')->get(); //Query Builder
         //dd($products );
 
-        $products = Product::all();
+        // $products = Product::all();
         //return $products;       // Retona un Json
-        return view('productos.index');     // Vista index dentro de la carpeta productos
+        return view('productos.index')->with([
+            'products' => Product::all(),
+          //  'products' => [], // array vacio
+        ]);     // Vista index dentro de la carpeta productos
     }
     public function crear()
     {
