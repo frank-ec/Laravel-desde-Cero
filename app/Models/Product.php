@@ -13,6 +13,7 @@ class Product extends Model
      *
      * @var array<int, string>
      */
+    // Atributos de producto
     protected $fillable = [
         'title',
         'description',

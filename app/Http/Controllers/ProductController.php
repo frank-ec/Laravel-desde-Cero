@@ -21,11 +21,21 @@ class ProductController extends Controller
     }
     public function crear()
     {
-        return '<h1> Creación de productos desde el CONTROLADOR</h1>';
+        return  view('productos.crear');
     }
     public function tienda()
     {
-        //
+        // dd('Estamos en la tienda');
+        /* Una a una las propiedades
+        $product = Product::create([
+              'title' => request()->title,
+              'description' => request()->description,    
+              'price' => request()->price,    
+              'stock' => request()->stock,    
+              'status' => request()->status,    
+        ]); */
+        $product =  Product::create(request()->all()); // Recibe todos los atributos
+        return $product;
     }
     public function mostrar($producto)
     {
@@ -46,12 +56,14 @@ class ProductController extends Controller
     }
 
     public function editar($producto)
-    {
-        return "<h1>Producto a editar desde el CONTROLADOR {$producto}</h1>";
+    {   // Route::get('productos/{producto}/editar', 'ProductController@editar')->name('productos.editar');
+        return view('productos.editar')->with([
+            'producto' => Product::findOrFail($producto),
+        ]);
     }
     public function actualizar($producto)
     {
-       //
+       dd('En update');
     }
     public function eliminar($producto)
     {
