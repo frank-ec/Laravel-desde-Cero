@@ -35,7 +35,10 @@ class ProductController extends Controller
               'status' => request()->status,    
         ]); */
         $producto =  Product::create(request()->all()); // Recibe todos los atributos
-        return $producto;
+        //return redirect()->back();
+        //return redirect()->action('MainController@index');
+        return redirect()->route('productos.index');
+
     }
     public function mostrar($producto)
     {
@@ -61,18 +64,20 @@ class ProductController extends Controller
             'producto' => Product::findOrFail($producto),
         ]);
     }
+
     public function actualizar($producto)
     {
             $producto = Product::findOrFail($producto);
             $producto->update(request()->all());
-            return $producto;
+            return redirect()->route('productos.index');
         
     }
     public function eliminar($producto)
     {
         $producto = Product::findOrFail($producto);
         $producto->delete();
-        return $producto;
+        //return $producto;
+        return redirect()->route('productos.index');
 
     }
 
