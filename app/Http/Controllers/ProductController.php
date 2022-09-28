@@ -70,7 +70,10 @@ class ProductController extends Controller
     }
     public function eliminar($producto)
     {
-       //
+        $producto = Product::findOrFail($producto);
+        $producto->delete();
+        return $producto;
+
     }
 
 }

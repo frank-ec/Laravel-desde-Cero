@@ -2,6 +2,8 @@
 
 @section('content')
 <h1>Lista de Productos</h1>
+<a class="btn btn-success" href="{{route('productos.crear')}}">Crear Producto</a> 
+
     @empty($productos)
         <div class="alert alert-warning">
             La lista de productos esta vacia
@@ -17,6 +19,7 @@
         <th scope="col">Precio</th>
         <th scope="col">Stock</th>
         <th scope="col">Status</th>
+        <th scope="col">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -28,6 +31,16 @@
             <td>{{ $producto->price}}</td>
             <td>{{ $producto->stock}}</td>
             <td>{{ $producto->status}}</td>
+            <td>
+                <a class="btn btn-link" href="{{ route('productos.mostrar', ['producto' => $producto->id]) }}">Mostrar</a> 
+                <a class="btn btn-link" href="{{ route('productos.editar', ['producto' => $producto->id]) }}">Editar</a> 
+
+                <form method="POST"  action="{{ route('productos.eliminar', ['producto' => $producto->id]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-link">Borrar</button>            
+                </form>
+            </td>
          </tr>   
         @endforeach
     </tbody>
