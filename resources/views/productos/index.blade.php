@@ -2,7 +2,7 @@
 
 @section('content')
 <h1>Lista de Productos</h1>
-    @empty($products)
+    @empty($productos)
         <div class="alert alert-warning">
             La lista de productos esta vacia
         </div>
@@ -20,14 +20,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($products as $product)
+        @foreach ($productos as $producto)
          <tr>
-            <td>{{ $product->id}}</td>
-            <td>{{ $product->title}}</td>
-            <td>{{ $product->description}}</td>
-            <td>{{ $product->price}}</td>
-            <td>{{ $product->stock}}</td>
-            <td>{{ $product->status}}</td>
+            <td>{{ $producto->id}}</td>
+            <td>{{ $producto->title}}</td>
+            <td>{{ $producto->description}}</td>
+            <td>{{ $producto->price}}</td>
+            <td>{{ $producto->stock}}</td>
+            <td>{{ $producto->status}}</td>
          </tr>   
         @endforeach
     </tbody>

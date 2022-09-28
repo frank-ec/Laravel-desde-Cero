@@ -1,11 +1,11 @@
 @extends('layouts.master')
 @section('content')
 
-    <h1>{{$product->title}} ({{$product->id}})</h1>
-    <p>{{$product->description}}</p>
-    <p>{{$product->price}}</p>
-    <p>{{$product->stock}}</p>
-    <p>{{$product->status}}</p>
+    <h1>{{$producto->title}} ({{$producto->id}})</h1>
+    <p>{{$producto->description}}</p>
+    <p>{{$producto->price}}</p>
+    <p>{{$producto->stock}}</p>
+    <p>{{$producto->status}}</p>
 
     {!!$html!!}
     

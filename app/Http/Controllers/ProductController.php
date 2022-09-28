@@ -15,7 +15,7 @@ class ProductController extends Controller
         // $products = Product::all();
         //return $products;       // Retona un Json
         return view('productos.index')->with([
-            'products' => Product::all(),
+            'productos' => Product::all(),
           //  'products' => [], // array vacio
         ]);     // Vista index dentro de la carpeta productos
     }
@@ -34,8 +34,8 @@ class ProductController extends Controller
               'stock' => request()->stock,    
               'status' => request()->status,    
         ]); */
-        $product =  Product::create(request()->all()); // Recibe todos los atributos
-        return $product;
+        $producto =  Product::create(request()->all()); // Recibe todos los atributos
+        return $producto;
     }
     public function mostrar($producto)
     {
@@ -44,12 +44,12 @@ class ProductController extends Controller
         // $product  = DB::table('products')->find($producto);                  //Query Builder
        //  dd($product );
        // $product = Product::find($producto); // Muestra nulo si no lo encuentra
-       $product = Product::findOrFail($producto); // Muestra erro 404 Not Found
+       $producto = Product::findOrFail($producto); // Muestra erro 404 Not Found
        // dd($product );
        // return $product;       // Retona un Json
      
         return view('productos.mostrar')->with([
-                'product' => $product,
+                'producto' => $producto,
                 'html' => "<h2> Agregando HTML desde el controlador</h2>",
 
         ]);       // Vista mostart de la carpeta productos
@@ -63,7 +63,10 @@ class ProductController extends Controller
     }
     public function actualizar($producto)
     {
-       dd('En update');
+            $producto = Product::findOrFail($producto);
+            $producto->update(request()->all());
+            return $producto;
+        
     }
     public function eliminar($producto)
     {
