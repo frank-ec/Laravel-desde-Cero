@@ -34,6 +34,22 @@ class ProductController extends Controller
               'stock' => request()->stock,    
               'status' => request()->status,    
         ]); */
+        //Validaciones
+            $rules = [
+                'title' => ['required','max:255'],
+                'description' => ['required','max:1000'],
+                'price' => ['required','min:1'],
+                'stock' => ['required','min:0'],
+                'status' => ['required','in:available,unavailable'],
+            ]; 
+            request()->validate($rules);
+        // Manejo de errores con sesion , Validando en la creacion de producto
+            if(request()->status =='available' && request()->stock == 0){
+                // session()->put('error','No puede asignar como disponible a un producto con stock cero');
+                session()->flash('error','No puede asignar como disponible a un producto con stock cero');
+                return redirect()->back();
+            }
+            session()->forget('error');
         $producto =  Product::create(request()->all()); // Recibe todos los atributos
         //return redirect()->back();
         //return redirect()->action('MainController@index');
@@ -67,6 +83,16 @@ class ProductController extends Controller
 
     public function actualizar($producto)
     {
+        //Validaciones
+        $rules = [
+            'title' => ['required','max:255'],
+            'description' => ['required','max:1000'],
+            'price' => ['required','min:1'],
+            'stock' => ['required','min:0'],
+            'status' => ['required','in:available,unavailable'],
+        ];  
+        request()->validate($rules);
+              
             $producto = Product::findOrFail($producto);
             $producto->update(request()->all());
             return redirect()->route('productos.index');
