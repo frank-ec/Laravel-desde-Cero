@@ -35,3 +35,7 @@ Route::match(['put', 'patch'],'productos/{producto}', 'ProductController@actuali
 Route::delete('productos/{producto}', 'ProductController@eliminar')->name('productos.eliminar');
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

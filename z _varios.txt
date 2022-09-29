@@ -1,2 +1,14 @@
 https://github.com/JuanDMeGon/Laravel-desde-Cero
 
+43. Generando los componentes de autenticación con Laravel UI
+
+composer require laravel/ui
+
+php artisan 
+
+php artisan ui --help
+
+php artisan ui bootstrap --auth
+
+php artisan migrate:fresh --seed
+
