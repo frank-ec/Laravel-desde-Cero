@@ -46,16 +46,20 @@ class ProductController extends Controller
         // Manejo de errores con sesion , Validando en la creacion de producto
             if(request()->status =='available' && request()->stock == 0){
                 // session()->put('error','No puede asignar como disponible a un producto con stock cero');
-                session()->flash('error','No puede asignar como disponible a un producto con stock cero');
+                //session()->flash('error','No puede asignar como disponible a un producto con stock cero');
                 return redirect()
                 ->back()
-                ->withInput(request()->all());
+                ->withInput(request()->all())
+                ->withErrors('No puede asignar como disponible a un producto con stock cero :(');
             }
             session()->forget('error');
         $producto =  Product::create(request()->all()); // Recibe todos los atributos
         //return redirect()->back();
         //return redirect()->action('MainController@index');
-        return redirect()->route('productos.index');
+        //session()->flash('success',"Producto {$producto->id} {$producto->title} fue agregado correctamente .. ");
+        return redirect()
+        ->route('productos.index')
+        ->withSuccess("Producto {$producto->id} {$producto->title} fue agregado correctamente .. :)");
 
     }
     public function mostrar($producto)
@@ -97,7 +101,9 @@ class ProductController extends Controller
 
             $producto = Product::findOrFail($producto);
             $producto->update(request()->all());
-            return redirect()->route('productos.index');
+            return redirect()
+            ->route('productos.index')
+            ->withSuccess("Producto {$producto->id} {$producto->title} fue actualizado correctamente .. :)");
         
     }
     public function eliminar($producto)
@@ -105,7 +111,9 @@ class ProductController extends Controller
         $producto = Product::findOrFail($producto);
         $producto->delete();
         //return $producto;
-        return redirect()->route('productos.index');
+        return redirect()
+        ->route('productos.index')
+        ->withSuccess("Producto {$producto->id} {$producto->title} fue eliminado correctamente .. :)");
 
     }
 
