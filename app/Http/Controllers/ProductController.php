@@ -47,7 +47,9 @@ class ProductController extends Controller
             if(request()->status =='available' && request()->stock == 0){
                 // session()->put('error','No puede asignar como disponible a un producto con stock cero');
                 session()->flash('error','No puede asignar como disponible a un producto con stock cero');
-                return redirect()->back();
+                return redirect()
+                ->back()
+                ->withInput(request()->all());
             }
             session()->forget('error');
         $producto =  Product::create(request()->all()); // Recibe todos los atributos
@@ -92,7 +94,7 @@ class ProductController extends Controller
             'status' => ['required','in:available,unavailable'],
         ];  
         request()->validate($rules);
-              
+
             $producto = Product::findOrFail($producto);
             $producto->update(request()->all());
             return redirect()->route('productos.index');
