@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+    // Si no inicia sesion redirecciona
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+ 
     public function index()
     {   // $products  = DB::table('products')->get(); //Query Builder
         //dd($products );
