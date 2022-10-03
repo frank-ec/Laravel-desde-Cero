@@ -32,7 +32,9 @@ npm install
 npm run dev
 
 
-
-
 Laravel en Ubuntu 20.04
 https://www.youtube.com/watch?v=tsm6F0mKeq8
+
+
+49 . Usando FormRequest de Laravel para validar datos
+

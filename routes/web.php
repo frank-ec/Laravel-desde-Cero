@@ -19,22 +19,17 @@ Route::get('/', function () {
 */
 
 Route::get('/', 'MainController@index')->name('main');
+// Usando rutas de recurso, simplica para no crear rutas individuales
+//Route::resource('productos', 'ProductController');
 
 Route::get('productos', 'ProductController@index')->name('productos.index');
-
 Route::get('productos/crear', 'ProductController@crear')->name('productos.crear');
-
 Route::post('productos', 'ProductController@tienda')->name('productos.tienda');
-
-Route::get('productos/{producto}', 'ProductController@mostrar')->name('productos.mostrar');
-
+Route::get('productos/{producto:id}', 'ProductController@mostrar')->name('productos.mostrar');
+//Route::get('productos/{producto:title}', 'ProductController@mostrar')->name('productos.mostrar');
 Route::get('productos/{producto}/editar', 'ProductController@editar')->name('productos.editar');
-
 Route::match(['put', 'patch'],'productos/{producto}', 'ProductController@actualizar')->name('productos.actualizar');
-
 Route::delete('productos/{producto}', 'ProductController@eliminar')->name('productos.eliminar');
-
-
 
 Auth::routes();
 

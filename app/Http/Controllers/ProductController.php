@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;             // Importar desde el modelo
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +30,7 @@ class ProductController extends Controller
     {
         return  view('productos.crear');
     }
-    public function tienda()
+    public function tienda(ProductRequest $request)
     {
         // dd('Estamos en la tienda');
         /* Una a una las propiedades
@@ -41,6 +42,7 @@ class ProductController extends Controller
               'status' => request()->status,    
         ]); */
         //Validaciones
+        /*
             $rules = [
                 'title' => ['required','max:255'],
                 'description' => ['required','max:1000'],
@@ -49,6 +51,7 @@ class ProductController extends Controller
                 'status' => ['required','in:available,unavailable'],
             ]; 
             request()->validate($rules);
+        */    
         // Manejo de errores con sesion , Validando en la creacion de producto
             if(request()->status =='available' && request()->stock == 0){
                 // session()->put('error','No puede asignar como disponible a un producto con stock cero');
@@ -68,14 +71,14 @@ class ProductController extends Controller
         ->withSuccess("Producto {$producto->id} {$producto->title} fue agregado correctamente .. :)");
 
     }
-    public function mostrar($producto)
+    public function mostrar(Product $producto)
     {
         // $product  = DB::table('products')->where('id', $producto)->get();    //Query Builder
         // $product  = DB::table('products')->where('id', $producto)->first();  //Query Builder
         // $product  = DB::table('products')->find($producto);                  //Query Builder
        //  dd($product );
        // $product = Product::find($producto); // Muestra nulo si no lo encuentra
-       $producto = Product::findOrFail($producto); // Muestra erro 404 Not Found
+       // $producto = Product::findOrFail($producto); // Muestra erro 404 Not Found 47 Inyeccion implicita de modelos
        // dd($product );
        // return $product;       // Retona un Json
      
@@ -86,16 +89,18 @@ class ProductController extends Controller
         ]);       // Vista mostart de la carpeta productos
     }
 
-    public function editar($producto)
+    public function editar(ProductRequest $request, Product $producto)
     {   // Route::get('productos/{producto}/editar', 'ProductController@editar')->name('productos.editar');
         return view('productos.editar')->with([
-            'producto' => Product::findOrFail($producto),
+            'producto' => $producto,
+            //'producto' => Product::findOrFail($producto),
         ]);
     }
 
-    public function actualizar($producto)
+    public function actualizar(Product $producto)
     {
         //Validaciones
+        /*
         $rules = [
             'title' => ['required','max:255'],
             'description' => ['required','max:1000'],
@@ -104,17 +109,17 @@ class ProductController extends Controller
             'status' => ['required','in:available,unavailable'],
         ];  
         request()->validate($rules);
-
-            $producto = Product::findOrFail($producto);
+        */
+            //$producto = Product::findOrFail($producto);
             $producto->update(request()->all());
             return redirect()
             ->route('productos.index')
             ->withSuccess("Producto {$producto->id} {$producto->title} fue actualizado correctamente .. :)");
         
     }
-    public function eliminar($producto)
+    public function eliminar(Product $producto)
     {
-        $producto = Product::findOrFail($producto);
+        //$producto = Product::findOrFail($producto);
         $producto->delete();
         //return $producto;
         return redirect()

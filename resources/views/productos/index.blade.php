@@ -33,6 +33,7 @@
             <td>{{ $producto->status}}</td>
             <td>
                 <a class="btn btn-link" href="{{ route('productos.mostrar', ['producto' => $producto->id]) }}">Mostrar</a> 
+                {{--<a class="btn btn-link" href="{{ route('productos.mostrar', ['producto' => $producto->title]) }}">Mostrar</a> --}}
                 <a class="btn btn-link" href="{{ route('productos.editar', ['producto' => $producto->id]) }}">Editar</a> 
                 <form method="POST" class="d-inline" action="{{ route('productos.eliminar', ['producto' => $producto->id]) }}">
                     @csrf
