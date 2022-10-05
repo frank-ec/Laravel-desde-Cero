@@ -31,4 +31,14 @@ class ProductRequest extends FormRequest
             'status' => ['required','in:available,unavailable'],
         ];
     }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function($validator){
+            if($this->status =='available' && $this->stock == 0){
+                $validator->errors()->add('stock', 'No puede asignar disponible productos con stock cero :(');
+            };
+
+        });
+    }
 }
