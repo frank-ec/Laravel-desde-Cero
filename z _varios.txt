@@ -39,3 +39,7 @@ https://www.youtube.com/watch?v=tsm6F0mKeq8
 49 . Usando FormRequest de Laravel para validar datos
 
 php artisan make:request ProductRequest
+
+52. 
+php artisan migrate:fresh
+php artisan migrate:fresh --seed
