@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
     public function index()
     {
-        return view('welcome');     // Vista welcome del controlador principal
+        return view('welcome')->with([
+            'productos'=> Product::all(),
+        ]);     // Vista welcome del controlador principal
     }
 }
 
