@@ -16,4 +16,9 @@ class Order extends Model
     protected $fillable = [
         'status',
     ];
+    // Relacion modelo orden a  modelo pago
+    public function payment()
+    {
+        return $this->hasOne(Payment::class);
+    }
 }

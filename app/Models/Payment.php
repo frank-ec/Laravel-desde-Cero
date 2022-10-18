@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Order;       // Importa la definicion de orden
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,6 +17,7 @@ class Payment extends Model
     protected $fillable = [
         'amount',
         'payed_at',
+        'order_id',
     ];
 
      /**
@@ -26,4 +28,10 @@ class Payment extends Model
     protected $dates = [
         'payed_at',
     ];
+
+    // Relacion un pago pertenece a una Orden
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }

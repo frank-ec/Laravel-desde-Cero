@@ -56,7 +56,36 @@ $instance = App\Models\Product::factory()->create();    ok
 $instance = App\Models\User::factory()->create();   ok
 $instance = App\Models\Image::factory()->make();    ok
 $instance = App\Models\Image::factory()->create();    ok
+$instance = App\Models\Image::factory()->user()->create();    ok
 
+
+55 Relaciones entre tablas
+Uno a uno, una orden un pago
+ $table->foreign('order_id')->references('id')->on('orders');
+ php artisan migrate:fresh
+ php artisan migrate:fresh --seed
+
+
+ 56 
+ $order = App\Models\Order::factory()->make(); 
+ $payment = App\Models\Payment::factory()->make(['order_id' => $order->id ]);
+
+$order = App\Models\Order::factory()->create(); 
+
+
+
+Acceder desde orden el pago asociado
+$order->payment
+Acceder desde el pago a la orden asociada
+$payment->order
+
+Query Builder
+$payment->order()
+Illuminate\Database\Eloquent\Relations\BelongsTo {#3654}
+
+$payment->order()->where();
+$payment->order()->get();
+$payment->order()->first();
 
 
 
