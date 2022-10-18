@@ -46,9 +46,19 @@ php artisan migrate:fresh --seed
 
 53
 php artisan tinker
-$instance = App\Models\Cart::factory()->make();
-$instance = App\Models\Cart::factory()->create();
-$instance = App\Models\Order::factory()->create();
+$instance = App\Models\Cart::factory()->make();     ok
+$instance = App\Models\Cart::factory()->create();   ok
+$instance = App\Models\Order::factory()->make();    ok
+$instance = App\Models\Order::factory()->create();  ok
+$instance = App\Models\Payment::factory()->make();  ok
+$instance = App\Models\Payment::factory()->create();  ok
+$instance = App\Models\Product::factory()->create();    ok
+$instance = App\Models\User::factory()->create();   ok
+$instance = App\Models\Image::factory()->make();    ok
+$instance = App\Models\Image::factory()->create();    ok
+
+
+
 
 
 
