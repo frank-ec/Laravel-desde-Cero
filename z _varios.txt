@@ -68,6 +68,7 @@ Uno a uno, una orden un pago
 
  56 
  $order = App\Models\Order::factory()->make(); 
+ $order = App\Models\Order::factory()->create(); 
  $payment = App\Models\Payment::factory()->make(['order_id' => $order->id ]);
 
 $order = App\Models\Order::factory()->create(); 
@@ -118,6 +119,7 @@ $user = App\Models\User::first();
 $user->orders;
 
 $order = App\Models\Order::first();
+
 
 
 
