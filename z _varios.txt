@@ -87,9 +87,27 @@ $payment->order()->where();
 $payment->order()->get();
 $payment->order()->first();
 
+57 Relaciones entre tablas
+Uno a muchos
+$table->bigInteger('customer_id')->unsigned();
+Uno a uno, una orden un pago
+ $table->foreign('order_id')->references('id')->on('orders');
 
+php artisan migrate:fresh --seed
 
+php artisan tinker
+$user = App\Models\User::factory()->create();
+$order = App\Models\Order::factory()->create(['customer_id' => $user->id]);
 
+$user->orders;
+Illuminate\Database\QueryException with message 'SQLSTATE[42S22]:
+ Column not found: 1054 Unknown column 'orders.user_id' in 'where clause'
+ (SQL: select * from `orders` where `orders`.`user_id` = 1 and `orders`.
+ `user_id` is not null)'
+
+$order->user;
+
+$user = App\Models\User::first();
 
 
 
