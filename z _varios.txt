@@ -109,5 +109,15 @@ $order->user;
 
 $user = App\Models\User::first();
 
+$user->orders;
+
+Lo deduje Yo
+$user->orders()->save(App\Models\Order::factory()->make());
+
+$user = App\Models\User::first();
+$user->orders;
+
+$order = App\Models\Order::first();
+
 
 
