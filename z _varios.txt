@@ -146,6 +146,39 @@ $order->products;
 $order = $order->fresh();
 $order->products;
 
-
 ------------------------------------------------------------------
+59 Relacion User->Order->Payment Usuario tiene muhdos pagos a ordenes
+
+$user = App\Models\User::first();
+
+$user->payments; // Error
+
+Lo deduje Yo
+$order = $user->orders()->save(App\Models\Order::factory()->make());
+
+$user->orders;
+
+$order->payment
+$order = $user->orders->first();
+$order->payment
+
+Lo deduje Yo
+$payment = $order->payment()->save(App\Models\Payment::factory()->make());
+$user->payments;
+
+$user = $user->fresh();
+-----
+$user->payments; // Error
+------
+$user->orders
+
+$user = $user->orders()->find(2);
+$order->payment; 
+Lo deduje Yo
+$payment = $order->payment()->save(App\Models\Payment::factory()->make());
+$user = $user->fresh();
+$user->payments; // Error
+
+
+
 

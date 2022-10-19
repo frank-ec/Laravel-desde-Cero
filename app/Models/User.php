@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\Order;       // Importa la definicion de order
+use App\Models\Payment;       // Importa la definicion de pagos
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -51,12 +52,17 @@ class User extends Authenticatable
     protected $dates = [
         'admin_since',
     ];
-
     // Relacion modelo user a  modelo order
     public function orders()
     {
         return $this->hasMany(Order::class, 'customer_id');
     }
 
+    // Relacion user - order -  pagos
+    public function payments()
+    {
+        return $this->hasManyThrough(Payment::class, Order::class, 'customer_id');
+    }
+    
     
 }
