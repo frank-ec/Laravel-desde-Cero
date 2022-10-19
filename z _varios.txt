@@ -119,7 +119,33 @@ $user = App\Models\User::first();
 $user->orders;
 
 $order = App\Models\Order::first();
+$order->user;
+---------------------------------------------------------------
+58. Relaciones muchos a muchos
+Tablas pivote 
+1. Indicar nombre de los modelos en singular
+2. Separados con _ en orden alfabetico
+
+php artisan make:migration CreateCartProductTable 
+php artisan make:migration CreateOrderProductTable 
+
+php artisan migrate:fresh --seed
+
+$user = App\Models\User::factory()->create();
+$order = App\Models\Order::factory()->create(['customer_id' => $user->id]);
+$cart = App\Models\Cart::factory()->create();
+$cart->products;
+$order->products;
+
+$product = App\Models\Product::first();
+$product->carts;
+$product->orders;
+
+$order->products()->attach([1 => ['quantity' => 4], 2 => ['quantity' => 5], 3 => ['quantity' => 4]]);
+$order->products;
+$order = $order->fresh();
+$order->products;
 
 
-
+------------------------------------------------------------------
 

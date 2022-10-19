@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Cart;       // Importa la definicion de carrito
+use App\Models\Order;       // Importa la definicion de order
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,5 +22,15 @@ class Product extends Model
         'stock',
         'status',
     ];
+
+    // Relacion modelo orden a  modelo user
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class)->withPivot('quantity');
+    }
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class)->withPivot('quantity');
+    }        
 
 }

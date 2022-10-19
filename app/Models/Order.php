@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Models;
-use App\Models\Payment;       // Importa la definicion de user
+use App\Models\Payment;       // Importa la definicion Payment
 use App\Models\User;       // Importa la definicion de user
+use App\Models\Product;       // Importa la definicion de user
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,6 +28,11 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'customer_id');
+    }
+    // Relacion tabla pivote
+    public function products()
+    {
+        return $this->belongsToMany(Product::class)->withPivot('quantity');
     }
 
 
