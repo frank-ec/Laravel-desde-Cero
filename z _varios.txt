@@ -171,7 +171,6 @@ $user = $user->fresh();
 $user->payments; // Error
 ------
 $user->orders
-
 $user = $user->orders()->find(2);
 $order->payment; 
 Lo deduje Yo
