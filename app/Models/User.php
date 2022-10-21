@@ -52,13 +52,13 @@ class User extends Authenticatable
     protected $dates = [
         'admin_since',
     ];
-    // Relacion modelo user a  modelo order
+    // V57 Relacion modelo user a  modelo order
     public function orders()
     {
         return $this->hasMany(Order::class, 'customer_id');
     }
 
-    // Relacion user - order -  pagos
+    //V59 Relacion user - order -  pagos
     public function payments()
     {
         return $this->hasManyThrough(Payment::class, Order::class, 'customer_id');

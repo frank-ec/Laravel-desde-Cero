@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Models;
 use App\Models\Product;       // Importa la definicion Payment
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class Cart extends Model
 {
     use HasFactory;
@@ -13,5 +11,4 @@ class Cart extends Model
         {
             return $this->belongsToMany(Product::class)->withPivot('quantity');
         }
-    
 }

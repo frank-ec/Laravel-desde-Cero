@@ -45,6 +45,8 @@ php artisan migrate:fresh
 php artisan migrate:fresh --seed
 
 53
+
+54
 php artisan tinker
 $instance = App\Models\Cart::factory()->make();     ok
 $instance = App\Models\Cart::factory()->create();   ok
@@ -59,20 +61,20 @@ $instance = App\Models\Image::factory()->create();    ok
 $instance = App\Models\Image::factory()->user()->create();    ok
 
 
-55 Relaciones entre tablas
+56 Relaciones entre tablas
 Uno a uno, una orden un pago
  $table->foreign('order_id')->references('id')->on('orders');
  php artisan migrate:fresh
  php artisan migrate:fresh --seed
 
 
- 56 
  $order = App\Models\Order::factory()->make(); 
- $order = App\Models\Order::factory()->create(); 
  $payment = App\Models\Payment::factory()->make(['order_id' => $order->id ]);
 
 $order = App\Models\Order::factory()->create(); 
 
+ 
+$payment = App\Models\Payment::factory()->create(['order_id' => $order->id ]);
 
 
 Acceder desde orden el pago asociado
@@ -87,7 +89,7 @@ Illuminate\Database\Eloquent\Relations\BelongsTo {#3654}
 $payment->order()->where();
 $payment->order()->get();
 $payment->order()->first();
-
+-------------------------------------------------------
 57 Relaciones entre tablas
 Uno a muchos
 $table->bigInteger('customer_id')->unsigned();
@@ -151,7 +153,7 @@ $order->products;
 
 $user = App\Models\User::first();
 
-$user->payments; // Error
+$user->payments; 
 
 Lo deduje Yo
 $order = $user->orders()->save(App\Models\Order::factory()->make());
@@ -168,7 +170,7 @@ $user->payments;
 
 $user = $user->fresh();
 -----
-$user->payments; // Error
+$user->payments; 
 ------
 $user->orders
 $user = $user->orders()->find(2);

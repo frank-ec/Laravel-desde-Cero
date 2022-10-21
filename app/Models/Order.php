@@ -19,12 +19,12 @@ class Order extends Model
         'status',
         'customer_id',
     ];
-    // Relacion modelo orden a  modelo pago
+    // V56 Relacion modelo orden a  modelo pago
     public function payment()
     {
         return $this->hasOne(Payment::class);
     }
-    // Relacion modelo orden a  modelo user
+    // V57 Relacion modelo orden a  modelo user
     public function user()
     {
         return $this->belongsTo(User::class, 'customer_id');

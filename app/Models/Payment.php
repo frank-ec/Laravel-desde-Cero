@@ -29,7 +29,7 @@ class Payment extends Model
         'payed_at',
     ];
 
-    // Relacion un pago pertenece a una Orden
+    // v56 Relacion un pago pertenece a una Orden
     public function order()
     {
         return $this->belongsTo(Order::class);
