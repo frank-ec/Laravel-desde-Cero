@@ -15,4 +15,10 @@ class Image extends Model
     protected $fillable = [
         'path',
     ];
+
+    //V60 Polomorfica Un usuario tiene una imagen
+    public function imageable()
+    {
+        return $this->morphTo();
+    }    
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Image;       // Importa la definicion de pagos
 use App\Models\Order;       // Importa la definicion de order
 use App\Models\Payment;       // Importa la definicion de pagos
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -57,12 +58,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class, 'customer_id');
     }
-
     //V59 Relacion user - order -  pagos
     public function payments()
     {
         return $this->hasManyThrough(Payment::class, Order::class, 'customer_id');
     }
+    //V60 Polomorfica Un usuario tiene una imagen
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+
+   
     
     
 }

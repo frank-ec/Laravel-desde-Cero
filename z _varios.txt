@@ -180,6 +180,38 @@ $payment = $order->payment()->save(App\Models\Payment::factory()->make());
 $user = $user->fresh();
 $user->payments; // Error
 
+---------------------------------------------------------------
+60 Relaciones polomorficas
+
+php artisan migrate:fresh --seed
+
+$user = App\Models\User::factory()->create();
+$user->image()->save(App\Models\Image::factory()->make());
+$user->image;
+
+$image = $user->image;
+
+$image->imageable;
+
+$product = App\Models\Product::find(2);
+$product->images()->save(App\Models\Image::factory()->make());
+
+$image = App\Models\Image::find(2);
+$image->imageable;
+
+$product->images;
+$product->images()->save(App\Models\Image::factory()->make());
+
+$product->images;
+
+$product = $product->fresh();
+$product->images;
+
+
+
+
+
+
 
 
 
