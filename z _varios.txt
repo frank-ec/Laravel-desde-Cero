@@ -208,10 +208,13 @@ $product = $product->fresh();
 $product->images;
 
 
+65. Usando scopes de Eloquent y mejorando la visualización de productos
 
+// Error en imagen al cargar
+--------------------------------------------------------------------------
+66. Usando recursos anidados en Laravel para agregar productos al carrito
 
-
-
+php artisan make:controller ProductCartController -m Cart -p Product
 
 
 

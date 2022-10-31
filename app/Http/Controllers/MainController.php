@@ -9,8 +9,9 @@ class MainController extends Controller
 {
     public function index()
     {
+        $products = Product::available()->get();
         return view('welcome')->with([
-            'productos'=> Product::all(),
+            'productos'=> $products,
         ]);     // Vista welcome del controlador principal
     }
 }

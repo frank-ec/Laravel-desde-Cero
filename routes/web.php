@@ -31,6 +31,7 @@ Route::get('productos/{producto}/editar', 'ProductController@editar')->name('pro
 Route::match(['put', 'patch'],'productos/{producto}', 'ProductController@actualizar')->name('productos.actualizar');
 Route::delete('productos/{producto}', 'ProductController@eliminar')->name('productos.eliminar');
 
+Route::get('productos', 'ProductCartController@index')->name('products.carts');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
